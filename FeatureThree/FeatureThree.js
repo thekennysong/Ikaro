@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var {
-  SliderIOS,
+  TextInput,
   Text,
   StyleSheet,
   View,
@@ -12,43 +12,27 @@ var FeatureThree = React.createClass({
   getInitialState() {
     return {
       value: 0,
+      text: 0,
+      text2: 0,
     };
   },
 
   render() {
     return (
       <View>
-        <Text style={styles.text} >
-          {this.state.value}
-        </Text>
-        <SliderIOS
-          style={styles.slider}
-          onValueChange={(value) => this.setState({value: value})} />
+       <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1, marginTop:90}}
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
+        />
+       <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1, marginTop:90}}
+          onChangeText={(text2) => this.setState({text2})}
+          value={this.state.text2}
+        />        
       </View>
     );
   }
 });
 
-var styles = StyleSheet.create({
-  slider: {
-    height: 10,
-    margin: 10,
-  },
-  text: {
-    fontSize: 14,
-    textAlign: 'center',
-    fontWeight: '500',
-    margin: 10,
-  },
-});
-
-exports.title = '<SliderIOS>';
-exports.displayName = 'SliderExample';
-exports.description = 'Slider input for numeric values';
-exports.examples = [
-  {
-    title: 'SliderIOS',
-    render(): ReactElement { return <SliderExample />; }
-  }
-];
 module.exports = FeatureThree;

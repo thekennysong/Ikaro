@@ -30,7 +30,6 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   text: {
-    margin: 80,
     fontSize: 20,
     textAlign: 'center',
   },

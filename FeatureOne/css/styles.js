@@ -7,15 +7,20 @@ var FeatureOneStyles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'stretch',
+    height: 500,
   },
   first:{
-  	marginTop: 65,
+  	paddingTop: 80,
   	flex:1,
-  	height:150,
+  	height:180,
   },
   second:{
   	flex:1,
-  	height:150,  	
+  	height:120,  	
+  },
+  third:{
+  	flex: 1, 
+  	height: 120,
   },
   beer:{
   	opacity: 0,
