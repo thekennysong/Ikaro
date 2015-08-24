@@ -2,12 +2,16 @@
 
 var Button = require('react-native-button')
 var React = require('react-native');
+var Slider = require('react-native-slider');
+
 var {
   TextInput,
   Text,
   StyleSheet,
   View,
 } = React;
+
+var styles = require('./css/styles');
 
 var FeatureThree = React.createClass({
   getInitialState() {
@@ -16,6 +20,7 @@ var FeatureThree = React.createClass({
       answer2: '',
       answer3: '',
       counter: 0,
+      value: 0.2,
     };
   },
 
@@ -81,7 +86,17 @@ var FeatureThree = React.createClass({
       </Button>
         <Text style={{fontSize:40, marginTop:10}}>
             Drink limit for the rest of the night: {this.state.counter} 
-        </Text>                    
+        </Text> 
+          <Slider
+          value={this.state.value}
+          onValueChange={(value) => this.setState({value})}
+            style={styles.container}
+            trackStyle={styles.track}
+            thumbStyle={styles.thumb}
+            minimumTrackTintColor='#31a4db'
+            thumbTouchSize={{width: 50, height: 40}}
+          />
+        <Text>Value: {this.state.value}</Text>                   
       </View>
     );
   }

@@ -27,21 +27,27 @@ var FeatureOne = React.createClass({
   _onPressButtonBeer: function() {
     console.log("Pressed!");
     this.setState({beer: this.state.beer + 1});
-    subtract();
+    
+    setTimeout(() => {
+      this.setState({hour: this.state.hour + 1});
+    },3600000); 
+
   },
 
   _onPressButtonWine: function() {
     console.log("Pressed!");
     this.setState({wine: this.state.wine + 1});
-    subtract();
+
+    setTimeout(() => {
+      this.setState({hour: this.state.hour + 1});
+    },3600000); 
+
   },
   
   _onPressButtonShots: function() {
     console.log("Pressed!");
     this.setState({shot: this.state.shot + 1});
-    subtract();
-  },
-  subtract: function(){
+    
     setTimeout(() => {
       this.setState({hour: this.state.hour + 1});
     },3600000); 

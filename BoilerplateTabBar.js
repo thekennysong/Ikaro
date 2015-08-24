@@ -27,7 +27,7 @@ var BoilerplateTabBar = React.createClass({
         tintColor="black"
         barTintColor="#3abeff">
         <TabBarIOS.Item
-          title="First Tab"
+          title="Counter"
           selected={this.state.selectedTab === 'firstTab'}
           onPress={() => {
             this.setState({
@@ -39,7 +39,7 @@ var BoilerplateTabBar = React.createClass({
 
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          title="Second Tab"
+          title="Home"
           selected={this.state.selectedTab === 'secondTab'}
           onPress={() => {
             this.setState({
@@ -51,7 +51,7 @@ var BoilerplateTabBar = React.createClass({
 
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          systemIcon="more"
+          title="Calculate"
           selected={this.state.selectedTab === 'thirdTab'}
           onPress={() => {
             this.setState({
