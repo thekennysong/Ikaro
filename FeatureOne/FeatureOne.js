@@ -20,22 +20,31 @@ var FeatureOne = React.createClass({
       beer: 0,
       wine: 0,
       shot: 0,
+      hour: 0,
     }
   },
 
   _onPressButtonBeer: function() {
     console.log("Pressed!");
     this.setState({beer: this.state.beer + 1});
+    subtract();
   },
 
   _onPressButtonWine: function() {
     console.log("Pressed!");
     this.setState({wine: this.state.wine + 1});
+    subtract();
   },
   
   _onPressButtonShots: function() {
     console.log("Pressed!");
     this.setState({shot: this.state.shot + 1});
+    subtract();
+  },
+  subtract: function(){
+    setTimeout(() => {
+      this.setState({hour: this.state.hour + 1});
+    },3600000); 
   },
 
   render: function() {
@@ -57,8 +66,8 @@ var FeatureOne = React.createClass({
         </TouchableOpacity>
 
 
-        <Text style={styles.total}>{this.state.wine + this.state.beer + this.state.shot}</Text>
-        <Text style={styles.limit}>You can have <Text style={styles.red}>{10-(this.state.wine + this.state.beer + this.state.shot)}</Text> before blacking out</Text>
+        <Text style={styles.total}>{this.state.wine + this.state.beer + this.state.shot - this.state.hour}</Text>
+        <Text style={styles.limit}>You can have <Text style={styles.red}>{10-(this.state.wine + this.state.beer + this.state.shot - this.state.hour)}</Text> before blacking out</Text>
 
       </View>
     );

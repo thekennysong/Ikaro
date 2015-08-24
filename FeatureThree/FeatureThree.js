@@ -20,7 +20,7 @@ var FeatureThree = React.createClass({
   },
 
   calculation(){
-      counting = 0;
+      var counting = 0;
 
       if(this.state.answer1 != 5){
         counting += 0;
@@ -77,7 +77,7 @@ var FeatureThree = React.createClass({
           value={this.state.answer3} placeholder='Type Here'
         />
       <Button style={{color: 'green', marginTop:'10'}} onPress={this.calculation}>
-        Press Me!
+        Calculate!
       </Button>
         <Text style={{fontSize:40, marginTop:10}}>
             Drink limit for the rest of the night: {this.state.counter} 
