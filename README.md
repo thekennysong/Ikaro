@@ -44,7 +44,16 @@ It also showcases some React Native features such as press interactions and view
 - Navigation to another view  
 
 
-## Author
+## Preliminary Questions
 
-Created by [Andy Hadjigeorgiou](https://github.com/ahh2131)
-Includes code from react-native docs and auto-generated code.
+Drunk Test Questions: 
+
+1) What is 1+10-(8+1)*2
+4
+
+2) How hot is your hottest cousin? 
+If you answered above an 8 you are drunk
+
+
+
+
