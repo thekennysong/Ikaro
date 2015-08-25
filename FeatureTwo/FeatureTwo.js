@@ -25,31 +25,40 @@ var FeatureTwo = React.createClass({
       };
   },
 
-  componentDidMount: function(){
+  componentWillMount: function(){
 
       var totalShots = 0;
       var totalBeer = 0;
       var totalWine = 0;
-
-      DB.users.get_id(14, function(result){
-          //console.log(result);
-          console.log(result);
-          totalShots = result[0].Total_Shots;
-          totalBeer = result[0].Total_Beer;
-          totalWine = result[0].Total_Wine;
-
-          console.log(totalShots);
-          console.log(totalBeer);
-          console.log(totalWine);
+      var latestId = 0;
 
 
+      DB.users.get_all(function(result){
+        console.log(result);
+        latestId = result.autoinc - 1;
+
+        DB.users.get_id(latestId, function(result){
+            //console.log(result);
+            console.log(result);
+            totalShots = result[0].Total_Shots;
+            totalBeer = result[0].Total_Beer;
+            totalWine = result[0].Total_Wine;
+
+            console.log(totalShots);
+            console.log(totalBeer);
+            console.log(totalWine);
+
+        });
 
       });
+
+
+
       setTimeout(() => {
           this.setState({shot: totalShots});
           this.setState({beer: totalBeer});
           this.setState({wine: totalWine});
-      },300); 
+      },100); 
 
   },
 
@@ -63,9 +72,10 @@ var FeatureTwo = React.createClass({
             }}
             loop={false}>
         <View style={styles.slide1}>
-          <Text>{this.state.shot}</Text>  
-          <Text>{this.state.beer}</Text>
-          <Text>{this.state.wine}</Text>
+          <Text>Last session numbers</Text>
+          <Text>Shots: {this.state.shot}</Text>  
+          <Text>Beer: {this.state.beer}</Text>
+          <Text>Wine: {this.state.wine}</Text>
 
 
 
