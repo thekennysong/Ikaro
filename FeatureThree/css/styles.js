@@ -20,14 +20,14 @@ var FeatureThreeStyles = StyleSheet.create({
     height: 20,
   },
   track: {
-    height: 2,
+    height: 4,
     backgroundColor: '#303030',
   },
   thumb: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     backgroundColor: '#31a4db',
-    borderRadius: 10 / 2,
+    borderRadius: 13 / 2,
     shadowColor: '#31a4db',
     shadowOffset: {width: 0, height: 0},
     shadowRadius: 2,
