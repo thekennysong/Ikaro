@@ -12,7 +12,7 @@ var {
 var BoilerplateTabBar = require('./BoilerplateTabBar');
 
 
-var counting = 0;
+
 
 
 var ReactNativeBoilerplate = React.createClass({

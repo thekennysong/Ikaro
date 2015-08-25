@@ -1,6 +1,9 @@
 'use strict';
 
 var React = require('react-native');
+var DB = require('../db.js');
+var DBEvents = require('react-native-db-models').DBEvents;
+var Button = require('react-native-button');
 
 var {
   StyleSheet,
@@ -8,7 +11,10 @@ var {
   View,
   Image,
   ScrollView,
+  AlertIOS,
+  PushNotificationIOS,
   TouchableOpacity,
+  Button,
   TouchableHighlight,
 } = React;
 var styles = require('./css/styles');
@@ -25,12 +31,23 @@ var FeatureOne = React.createClass({
   },
 
   _onPressButtonBeer: function() {
-    console.log("Pressed!");
+    console.log(this.props.children);
     this.setState({beer: this.state.beer + 1});
     
     setTimeout(() => {
       this.setState({hour: this.state.hour + 1});
-    },3600000); 
+    },3600000);
+
+    // if(this.state.wine + this.state.beer + this.state.shot - this.state.hour < 0){
+    //     AlertIOS.alert('STOP DRINKING FOOL!');
+    // }
+    DB.users.get_all(function(result){
+        console.log(result);
+    });
+
+    // DB.users.erase_db(function(removed_data){
+    //     console.log(removed_data);
+    // });   
 
   },
 
@@ -41,6 +58,7 @@ var FeatureOne = React.createClass({
     setTimeout(() => {
       this.setState({hour: this.state.hour + 1});
     },3600000); 
+    
 
   },
   
@@ -51,6 +69,27 @@ var FeatureOne = React.createClass({
     setTimeout(() => {
       this.setState({hour: this.state.hour + 1});
     },3600000); 
+
+    // if(this.state.wine + this.state.beer + this.state.shot - this.state.hour < 0){
+    //     React.AlertIOS.alert('STOP DRINKING FOOL!');
+    // }
+  },
+
+  sendStatstoDB: function(){
+    //once someone clicks the first button, the timeout begins
+    DB.users.add({
+      Total_Shots: this.state.shot,
+      Total_Beer: this.state.beer,
+      Total_Wine: this.state.wine, 
+      Drinking_Session_Time: this.state.hour
+    }, function(added_data){
+        console.log(added_data); 
+    });
+    this.setState({shot:0});
+    this.setState({beer:0});
+    this.setState({wine:0});
+    this.setState({hour:0});
+
   },
 
   render: function() {
@@ -75,6 +114,9 @@ var FeatureOne = React.createClass({
         <Text style={styles.total}>{this.state.wine + this.state.beer + this.state.shot - this.state.hour}</Text>
         <Text style={styles.limit}>You can have <Text style={styles.red}>{10-(this.state.wine + this.state.beer + this.state.shot - this.state.hour)}</Text> before blacking out</Text>
 
+        <Text onPress={this.sendStatstoDB}>
+            End Drinking Session
+        </Text>
       </View>
     );
   }

@@ -1,6 +1,8 @@
 'use strict';
 var Swiper = require('react-native-swiper')
 var React = require('react-native');
+var DB = require('../db.js');
+var DBEvents = require('react-native-db-models').DBEvents;
 
 var {
   StyleSheet,
@@ -14,6 +16,48 @@ var styles = require('./css/styles');
 
 
 var FeatureTwo = React.createClass({
+
+  getInitialState: function(){
+      return{
+        beer: 0, 
+        wine: 0, 
+        shot: 0,
+      };
+  },
+
+  componentDidMount: function(){
+
+      DB.users.get_id(14, function(result){
+          //console.log(result);
+          console.log(result);
+          console.log(result[0].Total_Shots);
+          console.log(result[0].Total_Beer);
+          console.log(result[0].Total_Wine);
+
+        this.setState({shot: result[0].Total_Shots});
+        this.setState({beer: result[0].Total_Beer});
+        this.setState({wine: result[0].Total_Wine});
+
+
+      });
+        console.log(this.state.shot);
+        console.log(this.state.beer);
+        console.log(this.state.wine);
+    // DB.users.get_all(function(result){
+     
+    //   console.log(result.rows);
+    //   var latest = result.autoinc - 1;
+    //   latest = '14';
+    //   console.log(result.rows.latest.Total_Shots);
+    //   //for(var i = 0; i < result.autoinc; i++){
+    //     this.setState({shot: result.rows.latest.Total_Shots});
+    //     this.setState({beer: result.rows.latest.Total_Beer});
+    //     this.setState({wine: result.rows.latest.Total_Wine});
+    //   //}
+    // });
+
+  },
+
   render: function() {
     return (
       <Swiper style={styles.wrapper}
@@ -24,7 +68,12 @@ var FeatureTwo = React.createClass({
             }}
             loop={false}>
         <View style={styles.slide1}>
-          <Text style={styles.text}>Welcome to Ikaro</Text>
+          <Text>{this.state.shot}</Text>  
+          <Text>{this.state.beer}</Text>
+          <Text>{this.state.wine}</Text>
+
+
+
         </View>
         <View style={styles.slide2}>
           <Text style={styles.text}>Keep track of your drinks, while learn how much more you can drink.</Text>

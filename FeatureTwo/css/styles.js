@@ -28,7 +28,7 @@ wrapper: {
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
-  }
+  },
 });
 
 module.exports = FeatureTwoStyles

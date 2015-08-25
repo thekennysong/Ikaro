@@ -8,10 +8,15 @@ var {
   TextInput,
   Text,
   StyleSheet,
+  TouchableWithoutFeedback,
   View,
 } = React;
 
+var FeatureDetail = require('./FeatureDetail');
+
+
 var styles = require('./css/styles');
+var object = {};
 
 var FeatureThree = React.createClass({
   getInitialState() {
@@ -22,8 +27,8 @@ var FeatureThree = React.createClass({
       counter: 0,
     };
   },
+  calculation() {
 
-  calculation(){
       var counting = 0;
       var rounded = 0;
       var rounded2 = 0;
@@ -33,10 +38,6 @@ var FeatureThree = React.createClass({
       rounded = Math.round(this.state.value * 10);
       rounded2 = Math.round(this.state.value2 * 10);
       rounded3 = Math.round(this.state.value3 * 10);
-
-      console.log(rounded);
-      console.log(rounded2);
-      console.log(rounded3);
 
       if(rounded == 5){
         counting = 2;
@@ -54,23 +55,26 @@ var FeatureThree = React.createClass({
         counting += 3;
       }
 
-      console.log(counting);
-
       if(0 < rounded3 < 6){
         counting += 4;
       }
       else{
         counting += 1;
       }
-
-      console.log(counting);
       
       this.setState({counter: counting});
-      
-      
-  },
-      
+   
 
+    var detailRoute = {
+      component: FeatureDetail,
+      title: 'Drink Limit',
+      passProp: {counter: counting},
+    };
+
+    this.props.navigator.push(detailRoute);
+
+  },
+    
   render() {
     return (
       <View>
@@ -116,13 +120,10 @@ var FeatureThree = React.createClass({
             thumbTouchSize={{width: 50, height: 40}}
           />
         <Text>Value: {Math.round(this.state.value3 * 10)}</Text> 
-      <Button style={{color: 'green', marginTop:'10'}} onPress={this.calculation}>
+      <Button onPress={this.calculation}>
         Calculate!
       </Button>
-        <Text style={{fontSize:40, marginTop:10}}>
-            Drink limit for the rest of the night: {this.state.counter} 
-        </Text> 
-                 
+              
       </View>
     );
   }
