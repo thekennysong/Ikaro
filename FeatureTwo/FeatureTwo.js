@@ -27,34 +27,29 @@ var FeatureTwo = React.createClass({
 
   componentDidMount: function(){
 
+      var totalShots = 0;
+      var totalBeer = 0;
+      var totalWine = 0;
+
       DB.users.get_id(14, function(result){
           //console.log(result);
           console.log(result);
-          console.log(result[0].Total_Shots);
-          console.log(result[0].Total_Beer);
-          console.log(result[0].Total_Wine);
+          totalShots = result[0].Total_Shots;
+          totalBeer = result[0].Total_Beer;
+          totalWine = result[0].Total_Wine;
 
-        this.setState({shot: result[0].Total_Shots});
-        this.setState({beer: result[0].Total_Beer});
-        this.setState({wine: result[0].Total_Wine});
+          console.log(totalShots);
+          console.log(totalBeer);
+          console.log(totalWine);
+
 
 
       });
-        console.log(this.state.shot);
-        console.log(this.state.beer);
-        console.log(this.state.wine);
-    // DB.users.get_all(function(result){
-     
-    //   console.log(result.rows);
-    //   var latest = result.autoinc - 1;
-    //   latest = '14';
-    //   console.log(result.rows.latest.Total_Shots);
-    //   //for(var i = 0; i < result.autoinc; i++){
-    //     this.setState({shot: result.rows.latest.Total_Shots});
-    //     this.setState({beer: result.rows.latest.Total_Beer});
-    //     this.setState({wine: result.rows.latest.Total_Wine});
-    //   //}
-    // });
+      setTimeout(() => {
+          this.setState({shot: totalShots});
+          this.setState({beer: totalBeer});
+          this.setState({wine: totalWine});
+      },300); 
 
   },
 
