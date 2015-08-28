@@ -3,6 +3,8 @@
 var Button = require('react-native-button')
 var React = require('react-native');
 var Slider = require('react-native-slider');
+var DB = require('../db2.js');
+var DBEvents = require('react-native-db-models').DBEvents;
 
 var {
   TextInput,
@@ -73,12 +75,20 @@ var FeatureThree = React.createClass({
 
     this.props.navigator.push(detailRoute);
 
+    DB.limit.add({
+        Drink_Limit: counting
+    }, function(added_data){
+        console.log(added_data); 
+    });
+
+
   },
+
     
   render() {
     return (
       <View>
-      <Text style={{color:'black', marginTop:90}}>
+      <Text style={{ textAlign: 'center',color:'black', marginTop:90}}>
         What is 1+10-(2+1)*2? 
       </Text>
           <Slider
@@ -90,10 +100,10 @@ var FeatureThree = React.createClass({
             minimumTrackTintColor='#31a4db'
             thumbTouchSize={{width: 50, height: 40}}
           />
-        <Text>Value: {Math.round(this.state.value * 10)}</Text>  
+        <Text style={styles.center}>{Math.round(this.state.value * 10)}</Text>  
 
 
-      <Text style={{color:'black', marginTop:20}}>  
+      <Text style={{ textAlign: 'center',color:'black', marginTop:20}}>  
         On a scale from 1 to 10, how badly do you miss your ex? 
       </Text>
           <Slider
@@ -105,9 +115,9 @@ var FeatureThree = React.createClass({
             minimumTrackTintColor='#31a4db'
             thumbTouchSize={{width: 50, height: 40}}
           />
-        <Text>Value: {Math.round(this.state.value2 * 10)}</Text> 
+        <Text style={styles.center}>{Math.round(this.state.value2 * 10)}</Text> 
 
-      <Text style={{color:'black', marginTop:20}}>  
+      <Text style={{ textAlign: 'center',color:'black', marginTop:20}}>  
         On a scale from 1 to 10, how cool are you? 
       </Text>
           <Slider
@@ -119,8 +129,8 @@ var FeatureThree = React.createClass({
             minimumTrackTintColor='#31a4db'
             thumbTouchSize={{width: 50, height: 40}}
           />
-        <Text>Value: {Math.round(this.state.value3 * 10)}</Text> 
-      <Button onPress={this.calculation}>
+        <Text style={styles.center}>{Math.round(this.state.value3 * 10)}</Text> 
+      <Button onPress={this.calculation} style={{marginTop:30}}>
         Calculate!
       </Button>
               

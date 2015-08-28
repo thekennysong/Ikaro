@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var DB = require('../db.js');
+var DB2 = require('../db2.js');
 var DBEvents = require('react-native-db-models').DBEvents;
 var Button = require('react-native-button');
 
@@ -27,8 +28,32 @@ var FeatureOne = React.createClass({
       wine: 0,
       shot: 0,
       hour: 0,
+      total: 0,
+      limit: 0,
     }
   },
+
+  componentWillMount: function(){
+    var drinkLimit = 0;
+    var latestId = 0;
+      DB2.limit.get_all(function(result){
+        console.log(result);
+        latestId = result.autoinc - 1;
+
+        DB2.limit.get_id(latestId, function(result){
+            //console.log(result);
+            console.log('ff' + result);
+            drinkLimit = result[0].Drink_Limit;
+        });
+
+      });
+
+
+
+      setTimeout(() => {
+          this.setState({limit: drinkLimit});
+      },100); 
+  },  
 
   _onPressButtonBeer: function() {
     console.log(this.props.children);
@@ -92,6 +117,35 @@ var FeatureOne = React.createClass({
 
   },
 
+  // componentWillReceiveProps:function(){
+  //   var currentTotal = 0;
+
+  //     DB.users.add({
+  //         Current_Total: this.state.shot+this.state.beer+this.state.wine
+  //       }, function(added_data){
+  //           console.log(added_data); 
+  //     });
+
+  //     DB.users.get_all(function(result){
+  //       console.log(result);
+  //       latestId = result.autoinc - 1;
+
+  //       DB.users.get_id(latestId, function(result){
+  //           //console.log(result);
+  //         currentTotal = result[0].Current_Total;
+
+  //       });
+
+  //     });
+  
+
+  //   setTimeout(() => {
+  //       this.setState({total: currentTotal});
+  //   },100); 
+
+
+  //},
+
   render: function() {
     return (
       <View style={styles.container}>
@@ -112,9 +166,9 @@ var FeatureOne = React.createClass({
 
 
         <Text style={styles.total}>{this.state.wine + this.state.beer + this.state.shot - this.state.hour}</Text>
-        <Text style={styles.limit}>You can have <Text style={styles.red}>{10-(this.state.wine + this.state.beer + this.state.shot - this.state.hour)}</Text> before blacking out</Text>
+        <Text style={styles.limit}>You can have <Text style={styles.red}>{this.state.limit-(this.state.wine + this.state.beer + this.state.shot - this.state.hour)}</Text> before blacking out</Text>
 
-        <Text onPress={this.sendStatstoDB}>
+        <Text style={styles.center} onPress={this.sendStatstoDB}>
             End Drinking Session
         </Text>
       </View>

@@ -14,8 +14,7 @@ var FeatureDetail = React.createClass({
 
     return (
       <View style={[styles.tabContent, {backgroundColor: '#4BBAA0'}]}>
-        <Text style={styles.tabText}>Feature Detail</Text>
-
+  
         <Text style={{fontSize:40, marginTop:10}}>
             Limit {this.props.navigator.navigationContext._currentRoute.passProp.counter} 
         </Text> 

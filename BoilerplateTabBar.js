@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var { TabBarIOS, } = require('react-native-icons');
+var TabBarItemIOS = TabBarIOS.Item;
 var {
   StyleSheet,
   TabBarIOS,
@@ -25,7 +27,8 @@ var BoilerplateTabBar = React.createClass({
     return (
       <TabBarIOS
         tintColor="black"
-        barTintColor="#3abeff">
+        barTintColor="#3abeff"
+        styles={styles.tabBar}>
         <TabBarIOS.Item
           title="Counter"
           selected={this.state.selectedTab === 'firstTab'}
@@ -40,6 +43,8 @@ var BoilerplateTabBar = React.createClass({
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title="Home"
+          iconName={'ion|ios-home-outline'}
+          iconSize={32}
           selected={this.state.selectedTab === 'secondTab'}
           onPress={() => {
             this.setState({

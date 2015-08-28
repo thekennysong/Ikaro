@@ -23,6 +23,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		709216FD1B87C3F70063968B /* bridge-beer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 709216FC1B87C3F70063968B /* bridge-beer.jpg */; };
+		70AD558D1B8E6D65007C8B47 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD558C1B8E6D5A007C8B47 /* libReactNativeIcons.a */; };
+		70AD558F1B8E6D99007C8B47 /* FontAwesomeKit in Resources */ = {isa = PBXBuildFile; fileRef = 70AD558E1B8E6D99007C8B47 /* FontAwesomeKit */; };
 		70D10DC11B8B997F005C4C81 /* libAIBSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70D10DB61B8B9976005C4C81 /* libAIBSQLite.a */; };
 		70D10DC31B8B99B1005C4C81 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70D10DC21B8B99B1005C4C81 /* libsqlite3.dylib */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -92,6 +94,13 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		70AD558B1B8E6D5A007C8B47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70AD557C1B8E6D5A007C8B47 /* ReactNativeIcons.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2F5A3EB81ACDBF8000439386;
+			remoteInfo = ReactNativeIcons;
+		};
 		70D10DB51B8B9976005C4C81 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 70D10DB11B8B9976005C4C81 /* AIBSQLite.xcodeproj */;
@@ -136,6 +145,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		709216FC1B87C3F70063968B /* bridge-beer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "bridge-beer.jpg"; path = "../../../Downloads/bridge-beer.jpg"; sourceTree = "<group>"; };
+		70AD557C1B8E6D5A007C8B47 /* ReactNativeIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeIcons.xcodeproj; path = "node_modules/react-native-icons/ios/ReactNativeIcons.xcodeproj"; sourceTree = "<group>"; };
+		70AD558E1B8E6D99007C8B47 /* FontAwesomeKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FontAwesomeKit; path = "node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit"; sourceTree = "<group>"; };
 		70D10DB11B8B9976005C4C81 /* AIBSQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AIBSQLite.xcodeproj; path = "node_modules/react-native-sqlite/AIBSQLite.xcodeproj"; sourceTree = "<group>"; };
 		70D10DC21B8B99B1005C4C81 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -154,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70AD558D1B8E6D65007C8B47 /* libReactNativeIcons.a in Frameworks */,
 				70D10DC31B8B99B1005C4C81 /* libsqlite3.dylib in Frameworks */,
 				70D10DC11B8B997F005C4C81 /* libAIBSQLite.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -268,6 +280,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		70AD557D1B8E6D5A007C8B47 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70AD558C1B8E6D5A007C8B47 /* libReactNativeIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		70D10DB21B8B9976005C4C81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +307,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				70AD557C1B8E6D5A007C8B47 /* ReactNativeIcons.xcodeproj */,
 				70D10DB11B8B9976005C4C81 /* AIBSQLite.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -313,6 +334,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				70AD558E1B8E6D99007C8B47 /* FontAwesomeKit */,
 				70D10DC21B8B99B1005C4C81 /* libsqlite3.dylib */,
 				13B07FAE1A68108700A75B9A /* ReactNativeBoilerplate */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -441,6 +463,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = 70AD557D1B8E6D5A007C8B47 /* Products */;
+					ProjectRef = 70AD557C1B8E6D5A007C8B47 /* ReactNativeIcons.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -507,6 +533,13 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		70AD558C1B8E6D5A007C8B47 /* libReactNativeIcons.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeIcons.a;
+			remoteRef = 70AD558B1B8E6D5A007C8B47 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		70D10DB61B8B9976005C4C81 /* libAIBSQLite.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -542,6 +575,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70AD558F1B8E6D99007C8B47 /* FontAwesomeKit in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				709216FD1B87C3F70063968B /* bridge-beer.jpg in Resources */,

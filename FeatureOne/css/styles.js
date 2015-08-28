@@ -45,7 +45,10 @@ var FeatureOneStyles = StyleSheet.create({
   	color: 'red',
   	fontSize: 40,
   },
-
+  center:{
+    textAlign: 'center',
+    marginTop: 20,
+  },
 });
 
 module.exports = FeatureOneStyles

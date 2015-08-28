@@ -7,7 +7,13 @@ var FeatureThreeStyles = StyleSheet.create({
   tabContent: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
+  center: {
+    flex:1,
+    alignItems: 'center',
+    textAlign: 'center',
+  },  
   tabText: {
     color: 'white',
     margin: 50,
@@ -17,17 +23,17 @@ var FeatureThreeStyles = StyleSheet.create({
     width: 50,
   },
   container: {
-    height: 20,
+    height: 70,
   },
   track: {
-    height: 4,
+    height: 5,
     backgroundColor: '#303030',
   },
   thumb: {
-    width: 13,
-    height: 13,
+    width: 25,
+    height: 25,
     backgroundColor: '#31a4db',
-    borderRadius: 13 / 2,
+    borderRadius: 25 / 2,
     shadowColor: '#31a4db',
     shadowOffset: {width: 0, height: 0},
     shadowRadius: 2,
