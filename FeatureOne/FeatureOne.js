@@ -2,7 +2,6 @@
 
 var React = require('react-native');
 var DB = require('../db.js');
-var DB2 = require('../db2.js');
 var DBEvents = require('react-native-db-models').DBEvents;
 var Button = require('react-native-button');
 
@@ -37,15 +36,20 @@ var FeatureOne = React.createClass({
     var drinkLimit = 0;
     var latestId = 0;
     var currentBeer = 0;
-      DB2.limit.get_all(function(result){
+    var currentWine = 0;
+    var currentShot = 0;
+
+      DB.limit.get_all(function(result){
         console.log(result);
         latestId = result.autoinc - 1;
 
-        DB2.limit.get_id(latestId, function(result){
+        DB.limit.get_id(latestId, function(result){
             //console.log(result);
             console.log('ff' + result);
             drinkLimit = result[0].Drink_Limit;
             currentBeer = result[0].beer;
+            currentWine = result[0].wine;
+            currentShot = result[0].shot;
         });
 
       });
@@ -55,7 +59,9 @@ var FeatureOne = React.createClass({
       setTimeout(() => {
           this.setState({limit: drinkLimit});
           this.setState({beer: currentBeer});
-          this.setState({total: currentBeer});
+          this.setState({wine: currentWine});
+          this.setState({shot: currentShot});
+          // this.setState({total: currentBeer+currentWine+currentShot});
       },100); 
   },  
 
@@ -65,7 +71,7 @@ var FeatureOne = React.createClass({
     this.setState({total: this.state.total + 1});
  
 
-    DB2.limit.update({
+    DB.limit.update({
         beer: 0
     },{beer:this.state.beer}, function(added_data){
         console.log(added_data); 
@@ -73,7 +79,7 @@ var FeatureOne = React.createClass({
 
     console.log(this.state.beer);
 
-    DB2.limit.update({
+    DB.limit.update({
         beer: this.state.beer
     },{beer:this.state.beer+1}, function(added_data){
         console.log(added_data); 
@@ -85,22 +91,32 @@ var FeatureOne = React.createClass({
       this.setState({hour: this.state.hour + 1});
     },3600000);
 
-    // if(this.state.wine + this.state.beer + this.state.shot - this.state.hour < 0){
-    //     AlertIOS.alert('STOP DRINKING FOOL!');
-    // }
     DB.users.get_all(function(result){
         console.log(result);
     });
 
-    // DB.users.erase_db(function(removed_data){
-    //     console.log(removed_data);
-    // });   
-
   },
 
   _onPressButtonWine: function() {
-    console.log("Pressed!");
+    //console.log("Pressed!");
     this.setState({wine: this.state.wine + 1});
+    this.setState({total: this.state.total + 1});
+ 
+
+    DB.limit.update({
+        wine: 0
+    },{wine:this.state.wine}, function(added_data){
+        console.log(added_data); 
+    });
+
+    console.log(this.state.wine);
+
+    DB.limit.update({
+        wine: this.state.wine
+    },{wine:this.state.wine+1}, function(added_data){
+        console.log(added_data); 
+    });
+
 
     setTimeout(() => {
       this.setState({hour: this.state.hour + 1});
@@ -112,7 +128,21 @@ var FeatureOne = React.createClass({
   _onPressButtonShots: function() {
     console.log("Pressed!");
     this.setState({shot: this.state.shot + 1});
-    
+    console.log('sgits' + this.state.shot);
+
+    DB.limit.update({
+        shot: 0
+    },{shot:this.state.shot}, function(added_data){
+        console.log(added_data); 
+    });
+
+    console.log(this.state.shot);
+
+    DB.limit.update({
+        shot: this.state.shot
+    },{shot:this.state.shot+1}, function(added_data){
+        console.log(added_data); 
+    });    
     setTimeout(() => {
       this.setState({hour: this.state.hour + 1});
     },3600000); 
@@ -132,41 +162,22 @@ var FeatureOne = React.createClass({
     }, function(added_data){
         console.log(added_data); 
     });
+    DB.limit.add({
+        Drink_Limit: 10,
+        beer: 0,
+        wine: 0,
+        shot: 0,
+    }, function(added_data){
+        console.log(added_data); 
+    });
+
+
     this.setState({shot:0});
     this.setState({beer:0});
     this.setState({wine:0});
     this.setState({hour:0});
 
   },
-
-  // componentWillReceiveProps:function(){
-  //   var currentTotal = 0;
-
-  //     DB.users.add({
-  //         Current_Total: this.state.shot+this.state.beer+this.state.wine
-  //       }, function(added_data){
-  //           console.log(added_data); 
-  //     });
-
-  //     DB.users.get_all(function(result){
-  //       console.log(result);
-  //       latestId = result.autoinc - 1;
-
-  //       DB.users.get_id(latestId, function(result){
-  //           //console.log(result);
-  //         currentTotal = result[0].Current_Total;
-
-  //       });
-
-  //     });
-  
-
-  //   setTimeout(() => {
-  //       this.setState({total: currentTotal});
-  //   },100); 
-
-
-  //},
 
   render: function() {
     return (
@@ -177,7 +188,7 @@ var FeatureOne = React.createClass({
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.tabText} onPress={this._onPressButtonWine}>
-          <Image onPress={this._onPressButtonBeer} source={{uri:'http://killerwineclub.com/wp-content/uploads/2014/02/wine-of-all-colors.jpg'}} style={styles.second}>
+          <Image onPress={this._onPressButtonWine} source={{uri:'http://killerwineclub.com/wp-content/uploads/2014/02/wine-of-all-colors.jpg'}} style={styles.second}>
             </Image>
         </TouchableOpacity>
 
@@ -187,7 +198,7 @@ var FeatureOne = React.createClass({
         </TouchableOpacity>
 
 
-        <Text style={styles.total}>{this.state.total - this.state.hour}</Text>
+        <Text style={styles.total}>{this.state.beer+this.state.wine+this.state.shot - this.state.hour}</Text>
         <Text style={styles.limit}>You can have <Text style={styles.red}>{this.state.limit-(this.state.wine + this.state.beer + this.state.shot - this.state.hour)}</Text> before blacking out</Text>
 
         <Text style={styles.center} onPress={this.sendStatstoDB}>

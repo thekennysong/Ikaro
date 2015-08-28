@@ -75,9 +75,10 @@ var FeatureTwo = React.createClass({
             loop={false}>
         <View style={styles.slide1}>
           <Text>Last session numbers</Text>
-          <Text>Shots: {this.state.shot}</Text>  
           <Text>Beer: {this.state.beer}</Text>
           <Text>Wine: {this.state.wine}</Text>
+          <Text>Shots: {this.state.shot}</Text>  
+          
 
 
 

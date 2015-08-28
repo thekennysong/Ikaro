@@ -3,7 +3,7 @@
 var Button = require('react-native-button')
 var React = require('react-native');
 var Slider = require('react-native-slider');
-var DB = require('../db2.js');
+var DB = require('../db.js');
 var DBEvents = require('react-native-db-models').DBEvents;
 
 var {
@@ -77,7 +77,9 @@ var FeatureThree = React.createClass({
 
     DB.limit.add({
         Drink_Limit: counting,
-        beer: 0
+        beer: 0,
+        wine: 0,
+        shot: 0,
     }, function(added_data){
         console.log(added_data); 
     });

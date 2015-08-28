@@ -1,8 +1,8 @@
 var RNDBModel = require('react-native-db-models');
 
 var DB = {
-    "app": new RNDBModel.create_db('app'),
     "users": new RNDBModel.create_db('users'),
+    "limit": new RNDBModel.create_db('limit'),
 }
 
 module.exports = DB;
