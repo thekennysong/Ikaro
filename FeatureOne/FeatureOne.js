@@ -36,6 +36,7 @@ var FeatureOne = React.createClass({
   componentWillMount: function(){
     var drinkLimit = 0;
     var latestId = 0;
+    var currentBeer = 0;
       DB2.limit.get_all(function(result){
         console.log(result);
         latestId = result.autoinc - 1;
@@ -44,6 +45,7 @@ var FeatureOne = React.createClass({
             //console.log(result);
             console.log('ff' + result);
             drinkLimit = result[0].Drink_Limit;
+            currentBeer = result[0].beer;
         });
 
       });
@@ -52,13 +54,33 @@ var FeatureOne = React.createClass({
 
       setTimeout(() => {
           this.setState({limit: drinkLimit});
+          this.setState({beer: currentBeer});
+          this.setState({total: currentBeer});
       },100); 
   },  
 
   _onPressButtonBeer: function() {
-    console.log(this.props.children);
+    //console.log(this.props.children);
     this.setState({beer: this.state.beer + 1});
-    
+    this.setState({total: this.state.total + 1});
+ 
+
+    DB2.limit.update({
+        beer: 0
+    },{beer:this.state.beer}, function(added_data){
+        console.log(added_data); 
+    });
+
+    console.log(this.state.beer);
+
+    DB2.limit.update({
+        beer: this.state.beer
+    },{beer:this.state.beer+1}, function(added_data){
+        console.log(added_data); 
+    });
+
+
+
     setTimeout(() => {
       this.setState({hour: this.state.hour + 1});
     },3600000);
@@ -165,7 +187,7 @@ var FeatureOne = React.createClass({
         </TouchableOpacity>
 
 
-        <Text style={styles.total}>{this.state.wine + this.state.beer + this.state.shot - this.state.hour}</Text>
+        <Text style={styles.total}>{this.state.total - this.state.hour}</Text>
         <Text style={styles.limit}>You can have <Text style={styles.red}>{this.state.limit-(this.state.wine + this.state.beer + this.state.shot - this.state.hour)}</Text> before blacking out</Text>
 
         <Text style={styles.center} onPress={this.sendStatstoDB}>

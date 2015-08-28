@@ -76,7 +76,8 @@ var FeatureThree = React.createClass({
     this.props.navigator.push(detailRoute);
 
     DB.limit.add({
-        Drink_Limit: counting
+        Drink_Limit: counting,
+        beer: 0
     }, function(added_data){
         console.log(added_data); 
     });
